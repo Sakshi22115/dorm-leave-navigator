@@ -10,7 +10,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 
 const Login: React.FC = () => {
-  const [id, setId] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState<"student" | "faculty" | "warden">("student");
   const { login } = useAuth();
@@ -21,10 +21,10 @@ const Login: React.FC = () => {
     e.preventDefault();
     
     // In a real app, you would validate credentials against a backend
-    if (id && password) {
+    if (email && password) {
       // Mock login - in a real app this would verify against a database
       const userData = {
-        id,
+        id: email, // Using email as the ID for internal storage
         name: mockUsernames[role],
         role,
       };
@@ -89,13 +89,13 @@ const Login: React.FC = () => {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="id">ID Number</Label>
+              <Label htmlFor="email">Email Address</Label>
               <Input
-                id="id"
-                type="text"
-                value={id}
-                onChange={(e) => setId(e.target.value)}
-                placeholder={role === "student" ? "Student ID" : "Staff ID"}
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={role === "student" ? "student@example.com" : "staff@example.com"}
                 required
               />
             </div>
