@@ -34,8 +34,8 @@ export const useData = () => {
 const initialLeaveRequests: LeaveRequest[] = [
   {
     id: "1",
-    studentId: "student@example.com",
-    studentName: "John Doe",
+    studentId: "230701279@gmail.com",
+    studentName: "John Student",
     reason: "Family function",
     startDate: "2025-04-15",
     endDate: "2025-04-18",
@@ -45,7 +45,7 @@ const initialLeaveRequests: LeaveRequest[] = [
   },
   {
     id: "2",
-    studentId: "jane@example.com",
+    studentId: "230701300@gmail.com",
     studentName: "Jane Smith",
     reason: "Medical appointment",
     startDate: "2025-04-12",
@@ -56,8 +56,8 @@ const initialLeaveRequests: LeaveRequest[] = [
   },
   {
     id: "3",
-    studentId: "bob@example.com",
-    studentName: "Bob Johnson",
+    studentId: "230701279@gmail.com",
+    studentName: "John Student",
     reason: "Personal emergency",
     startDate: "2025-04-20",
     endDate: "2025-04-22",

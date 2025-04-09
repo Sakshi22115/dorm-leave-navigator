@@ -53,8 +53,22 @@ const Login: React.FC = () => {
   // Mock usernames for demonstration
   const mockUsernames: Record<string, string> = {
     student: "John Student",
-    faculty: "Dr. Smith",
-    warden: "Mr. Johnson",
+    faculty: "Dr. Madhusudhan",
+    warden: "Dr. Geetha",
+  };
+
+  // Email placeholders based on role
+  const getEmailPlaceholder = () => {
+    switch(role) {
+      case "student":
+        return "230701279@gmail.com or 230701300@gmail.com";
+      case "faculty":
+        return "madhusudhan@gmail.com";
+      case "warden":
+        return "geetha@gmail.com";
+      default:
+        return "email@example.com";
+    }
   };
 
   return (
@@ -95,7 +109,7 @@ const Login: React.FC = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder={role === "student" ? "student@example.com" : "staff@example.com"}
+                placeholder={getEmailPlaceholder()}
                 required
               />
             </div>
