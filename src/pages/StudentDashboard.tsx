@@ -16,7 +16,6 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { CalendarIcon } from 'lucide-react';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
-import AddDummyDataForm from '@/components/AddDummyDataForm';
 
 const StudentDashboard: React.FC = () => {
   const { user } = useAuth();
@@ -30,7 +29,6 @@ const StudentDashboard: React.FC = () => {
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [endDate, setEndDate] = useState<Date | undefined>(undefined);
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [showDummyDataForm, setShowDummyDataForm] = useState(false);
 
   // Redirect if not logged in or not a student
   React.useEffect(() => {
@@ -97,20 +95,10 @@ const StudentDashboard: React.FC = () => {
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-bold">Your Leave Requests</h2>
-          <div className="flex gap-2">
-            <Button onClick={() => setIsFormOpen(!isFormOpen)}>
-              {isFormOpen ? 'Cancel' : 'New Leave Request'}
-            </Button>
-            <Button 
-              variant="outline" 
-              onClick={() => setShowDummyDataForm(!showDummyDataForm)}
-            >
-              {showDummyDataForm ? 'Hide Data Tool' : 'Custom Data Tool'}
-            </Button>
-          </div>
+          <Button onClick={() => setIsFormOpen(!isFormOpen)}>
+            {isFormOpen ? 'Cancel' : 'New Leave Request'}
+          </Button>
         </div>
-
-        {showDummyDataForm && <AddDummyDataForm />}
 
         {isFormOpen && (
           <Card className="mb-6">
