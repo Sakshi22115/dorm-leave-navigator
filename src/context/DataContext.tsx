@@ -17,6 +17,7 @@ interface DataContextType {
   leaveRequests: LeaveRequest[];
   addLeaveRequest: (request: Omit<LeaveRequest, "id" | "createdAt" | "status">) => void;
   updateLeaveStatus: (id: string, status: "approved" | "rejected") => void;
+  setCustomLeaveRequests: (requests: LeaveRequest[]) => void;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -33,7 +34,7 @@ export const useData = () => {
 const initialLeaveRequests: LeaveRequest[] = [
   {
     id: "1",
-    studentId: "STU001",
+    studentId: "student@example.com",
     studentName: "John Doe",
     reason: "Family function",
     startDate: "2025-04-15",
@@ -44,7 +45,7 @@ const initialLeaveRequests: LeaveRequest[] = [
   },
   {
     id: "2",
-    studentId: "STU002",
+    studentId: "jane@example.com",
     studentName: "Jane Smith",
     reason: "Medical appointment",
     startDate: "2025-04-12",
@@ -55,7 +56,7 @@ const initialLeaveRequests: LeaveRequest[] = [
   },
   {
     id: "3",
-    studentId: "STU003",
+    studentId: "bob@example.com",
     studentName: "Bob Johnson",
     reason: "Personal emergency",
     startDate: "2025-04-20",
@@ -87,8 +88,13 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     );
   };
 
+  // New function to set custom leave requests
+  const setCustomLeaveRequests = (requests: LeaveRequest[]) => {
+    setLeaveRequests(requests);
+  };
+
   return (
-    <DataContext.Provider value={{ leaveRequests, addLeaveRequest, updateLeaveStatus }}>
+    <DataContext.Provider value={{ leaveRequests, addLeaveRequest, updateLeaveStatus, setCustomLeaveRequests }}>
       {children}
     </DataContext.Provider>
   );
